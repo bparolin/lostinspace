@@ -3,15 +3,22 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+using Zenject;
+
 public class PlanetState : State {
-	public PlayerController player;
-	public Rocket rocket;
-	public CameraHandler cameraHandler;
-	public GameController gameController;
-	public GameObject gamePanel;
-	public RocketState rocketState;
+	[Inject]
+	private PlayerController player;
+	[Inject]
+	private Rocket rocket;
+	[Inject]
+	private CameraHandler cameraHandler;
+	[Inject]
+	private GameController gameController;
+	[Inject]
+	private RocketState rocketState;
 
 	private Planet planet;
+	public GameObject gamePanel;
 
 	public override void OnEnterState () {
 		planet = player.GetPlanet ().GetComponent<Planet> ();

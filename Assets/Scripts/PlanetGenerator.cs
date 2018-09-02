@@ -7,22 +7,10 @@ using UnityEngine;
 public class PlanetGenerator : MonoBehaviour {
     private List<Planet> planets = new List<Planet> ();
 
-    private static PlanetGenerator INSTANCE;
-
     public GameObject planetsHolder;
 
-    public static PlanetGenerator instance () {
-        return INSTANCE;
-    }
-
-    private void Awake () {
+    public void Start () {
         planets.AddRange (planetsHolder.GetComponentsInChildren<Planet> ());
-        if (INSTANCE == null) {
-            INSTANCE = this;
-        } else {
-            Debug.Log ("Error: Two instances of PlanetGenerator");
-            Destroy (this);
-        }
     }
 
     public List<Planet> GetPlanets () {

@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 
+using Zenject;
+
 public class PickObject : Entity {
-	public GameController gameController;
+	[Inject]
+	private GameController gameController;
 
 	private void Start () {
 		this.OnUse = Pick;

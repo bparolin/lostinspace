@@ -71,10 +71,10 @@ public class Entity : MonoBehaviour {
 	}
 
 	public void TurnLeft () {
-		this.transform.Rotate (0, 0, moveSpeed * 30f * Time.deltaTime);
+		this.transform.Rotate (0, 0, moveSpeed * 6f * Time.deltaTime);
 	}
 
 	public void TurnRight () {
-		this.transform.Rotate (0, 0, -moveSpeed * 30f * Time.deltaTime);
+		this.transform.Rotate (0, 0, -moveSpeed * 6f * Time.deltaTime);
 	}
 }

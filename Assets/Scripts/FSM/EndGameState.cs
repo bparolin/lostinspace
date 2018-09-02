@@ -4,11 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EndGameState : State {
-	public NewGameState newGameState;
-	public GameObject endGamePanel;
+using Zenject;
 
-	public GameController gameController;
+public class EndGameState : State {
+	[Inject]
+	private NewGameState newGameState;
+	[Inject]
+	private GameController gameController;
+
+	public GameObject endGamePanel;
+	
 
 	public override void OnEnterState () {
 		inputHandler.ResetButtons ();

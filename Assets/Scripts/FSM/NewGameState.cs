@@ -3,9 +3,15 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+using Zenject;
+
 public class NewGameState : State {
+	[Inject]
+	private PlanetState planetState;
+	[Inject]
+	private GameController gameController;
+
 	public GameObject newGamePanel;
-	public PlanetState planetState;
 
 	public override void OnEnterState () {
 		inputHandler.ResetButtons ();
@@ -26,6 +32,7 @@ public class NewGameState : State {
 	}
 
 	public void BeginGame () {
+		gameController.StartTimer ();
 		fsm.EnterState (planetState);
 	}
 }

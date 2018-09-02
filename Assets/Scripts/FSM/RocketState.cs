@@ -3,13 +3,23 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
+using Zenject;
+
 public class RocketState : State {
-	public PlayerController player;
-	public Rocket rocket;
-	public CameraHandler cameraHandler;
-	public GameController gameController;
-	public PlanetState planetState;
-	public EndGameState endGameState;
+	[Inject]
+	private PlayerController player;
+	[Inject]
+	private Rocket rocket;
+	[Inject]
+	private CameraHandler cameraHandler;
+	[Inject]
+	private GameController gameController;
+	[Inject]
+	private PlanetState planetState;
+	[Inject]
+	private EndGameState endGameState;
+	[Inject]
+	private PlanetGenerator planetGenerator;
 
 	private Planet landablePlanet = null;
 
@@ -28,7 +38,7 @@ public class RocketState : State {
 
 
 		bool nearPlanet = false;
-		List<Planet> planets = PlanetGenerator.instance ().GetPlanets ();
+		List<Planet> planets = planetGenerator.GetPlanets ();
 		foreach (Planet planet in planets) {
 			float planetDistance = planet.GetDistance (rocket);
 			if (planetDistance <= 0f) {

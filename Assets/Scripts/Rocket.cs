@@ -17,7 +17,7 @@ public class Rocket : Entity {
     }
 
     public void Decelerate () {
-        velocity -= moveSpeed / 6f;
+        velocity -= moveSpeed / 10f;
         if (velocity < 0f) {
             velocity = 0f;
         }

@@ -4,13 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+using Zenject;
+
 public class GameController : MonoBehaviour {
 	public GameObject firstPlanet;
-	public PlayerController playerController;
-	public Rocket rocket;
-	public FSM fsm;
-	public NewGameState newGameState;
-	public EndGameState endGameState;
+	[Inject]
+	private PlayerController playerController;
+	[Inject]
+	private Rocket rocket;
+	[Inject]
+	private FSM fsm;
+	[Inject]
+	private NewGameState newGameState;
+	[Inject]
+	private EndGameState endGameState;
 
 	public Text timerText;
 	public Text scoreText;

@@ -3,14 +3,15 @@ using System.Collections.Generic;
 
 using UnityEngine;
 
-public abstract class State : MonoBehaviour {
-	public InputHandler inputHandler;
-	public PanelManager panelManager;
-	protected FSM fsm;
+using Zenject;
 
-	public void Start () {
-		fsm = this.GetComponentInParent<FSM> ();
-	}
+public abstract class State : MonoBehaviour {
+	[Inject]
+	protected InputHandler inputHandler;
+	[Inject]
+	protected PanelManager panelManager;
+	[Inject]
+	protected FSM fsm;
 
 	public abstract void OnEnterState ();
 	public abstract void OnFixedUpdate ();
