@@ -7,7 +7,7 @@ using UnityEngine;
 [RequireComponent (typeof (MeshRenderer))]
 public class Circle : MonoBehaviour {
 	public float radius = 0.5f;
-	public int verticesNumber = 10;
+	public int verticesNumber = 500;
 
 	private List<Vector3> vertices_;
 	private List<int> triangles_;
@@ -17,10 +17,9 @@ public class Circle : MonoBehaviour {
 	// Use this for initialization
 	private void Awake () {
 		mesh_ = this.GetComponent<MeshFilter> ().mesh;
-		CreateCircle ();
 	}
 
-	private void CreateCircle () {
+	public void CreateCircle () {
 		vertices_ = new List<Vector3> ();
 		uvs_ = new List<Vector2> ();
 
@@ -53,10 +52,4 @@ public class Circle : MonoBehaviour {
 		mesh_.RecalculateBounds ();
 		mesh_.RecalculateNormals ();
 	}
-
-	private void OnDrawGizmos() {
-        // Draw a sphere at the transform's position
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, radius);
-    }
 }

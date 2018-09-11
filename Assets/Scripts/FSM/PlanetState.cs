@@ -7,7 +7,7 @@ using Zenject;
 
 public class PlanetState : State {
 	[Inject]
-	private PlayerController player;
+	private Player player;
 	[Inject]
 	private Rocket rocket;
 	[Inject]
@@ -23,7 +23,7 @@ public class PlanetState : State {
 	public override void OnEnterState () {
 		planet = player.GetPlanet ().GetComponent<Planet> ();
 		rocket.OnUse = this.EnterRocket;
-		cameraHandler.SetFollowedObject (player.gameObject);
+		cameraHandler.SetFollowedObject (player.gameObject, true);
 		inputHandler.ResetButtons ();
 		inputHandler.buttonD = player.MoveCW;
 		inputHandler.buttonQ = player.MoveCCW;

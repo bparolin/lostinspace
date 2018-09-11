@@ -7,33 +7,24 @@ using UnityEngine.UI;
 using Zenject;
 
 public class GameController : MonoBehaviour {
-	public GameObject firstPlanet;
-	[Inject]
-	private PlayerController playerController;
-	[Inject]
-	private Rocket rocket;
 	[Inject]
 	private FSM fsm;
 	[Inject]
-	private NewGameState newGameState;
+	private TitleState titleState;
 	[Inject]
 	private EndGameState endGameState;
+	[Inject]
+	private PlanetGenerator planetGenerator;
+	[Inject]
+	private TimeController timeController;
 
 	public Text timerText;
 	public Text scoreText;
 
-	private float startTime;
-
 	private int score = 0;
-	public int pickObjectNumber = 1;
 
 	private void Awake () {
-		UpdateScore ();
-
-		playerController.SetPlanet (firstPlanet);
-		rocket.SetPlanet (firstPlanet);
-		firstPlanet.GetComponent<Planet> ().AddEntity (rocket);
-		fsm.EnterState (newGameState);
+		fsm.EnterState (titleState);
 	}
 
 	private void Update () {
@@ -45,28 +36,33 @@ public class GameController : MonoBehaviour {
 	}
 
 	public void UpdateTimer () {
-		float time = Time.time - startTime;
-		float seconds = Mathf.Floor (time);
-		float hundredth = Mathf.Floor((time - seconds) * 100f);
-		timerText.text = seconds + "\"" + hundredth;
+		float time = Time.time - timeController.timer;
+		int minutes = Mathf.FloorToInt (time / 60f);
+		int seconds = Mathf.FloorToInt (time % 60f);
+		int hundredth = Mathf.FloorToInt (Mathf.Repeat (time, 1) * 100f);
+		if (minutes > 0)
+			timerText.text = minutes.ToString ("D2") + "'" + seconds.ToString ("D2") + "\"" + hundredth.ToString ("D2");
+		else
+			timerText.text = seconds.ToString ("D2") + "\"" + hundredth.ToString ("D2");
 	}
 
 	public void UpdateScore () {
-		scoreText.text = score + "/" + pickObjectNumber;
-	}
-
-	public void StartTimer () {
-		startTime = Time.time;
+		scoreText.text = score + "/" + planetGenerator.pickObjectNumber;
 	}
 
 	public void IncrementScore () {
 		score++;
 		UpdateScore ();
-		if (score == pickObjectNumber) // Victory
+		if (score == planetGenerator.pickObjectNumber) // Victory
 			fsm.EnterState (endGameState);
 	}
 
+	public void ResetScore () {
+		score = 0;
+		UpdateScore ();
+	}
+
 	public bool AllPicked () {
-		return score == pickObjectNumber;
+		return score == planetGenerator.pickObjectNumber;
 	}
 }

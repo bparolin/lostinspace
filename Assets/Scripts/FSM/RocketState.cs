@@ -7,7 +7,7 @@ using Zenject;
 
 public class RocketState : State {
 	[Inject]
-	private PlayerController player;
+	private Player player;
 	[Inject]
 	private Rocket rocket;
 	[Inject]
@@ -24,7 +24,7 @@ public class RocketState : State {
 	private Planet landablePlanet = null;
 
 	public override void OnEnterState () {
-		cameraHandler.SetFollowedObject (rocket.gameObject);
+		cameraHandler.SetFollowedObject (rocket.gameObject, false);
 		inputHandler.ResetButtons ();
 		inputHandler.buttonZ = rocket.Accelerate;
 		inputHandler.buttonQ = rocket.TurnLeft;
@@ -77,7 +77,7 @@ public class RocketState : State {
 
 	public void EnterPlanet () {
 		float landAngle = rocket.LandOnPlanet (landablePlanet);
-		player.ExitRocket ();
+		player.EnterPlanet ();
 		player.SetAngle (landAngle);
 		player.SetPlanet (landablePlanet.gameObject);
 		fsm.EnterState (planetState);

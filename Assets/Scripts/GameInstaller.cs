@@ -9,8 +9,9 @@ public class GameInstaller : MonoInstaller<GameInstaller> {
     public FSM fsm;
     public CameraHandler cameraHandler;
     public PlanetGenerator planetGenerator;
-    public PlayerController playerController;
+    public Player player;
     public Rocket rocket;
+    public TitleState titleState;
     public NewGameState newGameState;
     public EndGameState endGameState;
     public PlanetState planetState;
@@ -23,11 +24,14 @@ public class GameInstaller : MonoInstaller<GameInstaller> {
         Container.BindInstance(fsm);
         Container.BindInstance(cameraHandler);
         Container.BindInstance(planetGenerator);
-        Container.BindInstance(playerController);
+        Container.BindInstance(player);
         Container.BindInstance(rocket);
+        Container.BindInstance(titleState);
         Container.BindInstance(newGameState);
         Container.BindInstance(endGameState);
         Container.BindInstance(planetState);
         Container.BindInstance(rocketState);
+
+        Container.Bind<TimeController>().AsSingle();
     }
 }

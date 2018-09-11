@@ -9,7 +9,7 @@ public class PickObject : Entity {
 	[Inject]
 	private GameController gameController;
 
-	private void Start () {
+	private void Awake () {
 		this.OnUse = Pick;
 	}
 

@@ -13,8 +13,8 @@ public abstract class State : MonoBehaviour {
 	[Inject]
 	protected FSM fsm;
 
-	public abstract void OnEnterState ();
-	public abstract void OnFixedUpdate ();
-	public abstract void OnUpdate ();
-	public abstract void OnExitState ();
+	public virtual void OnEnterState () {}
+	public virtual void OnFixedUpdate () {}
+	public virtual void OnUpdate () {}
+	public virtual void OnExitState () {}
 }
