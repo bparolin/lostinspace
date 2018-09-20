@@ -13,7 +13,7 @@ public class TitleState : State {
 
 	public override void OnEnterState () {
 		inputHandler.ResetButtons ();
-		inputHandler.buttonSpace = this.BeginGame;
+		inputHandler.inputStart = this.BeginGame;
 		panelManager.EnablePanel (titlePanel);
 	}
 

@@ -25,8 +25,8 @@ public class PlanetState : State {
 		rocket.OnUse = this.EnterRocket;
 		cameraHandler.SetFollowedObject (player.gameObject, true);
 		inputHandler.ResetButtons ();
-		inputHandler.buttonD = player.MoveCW;
-		inputHandler.buttonQ = player.MoveCCW;
+		inputHandler.inputLeft = player.MoveCCW;
+		inputHandler.inputRight = player.MoveCW;
 		panelManager.EnablePanel (gamePanel);
 	}
 	public override void OnFixedUpdate () {}
@@ -46,9 +46,9 @@ public class PlanetState : State {
 		}
 
 		if (nearestEntity != null && minDistance <= (player.useDistance * player.useDistance)) {
-			inputHandler.buttonF = nearestEntity.OnUse;
+			inputHandler.inputUse = nearestEntity.OnUse;
 		} else {
-			inputHandler.buttonF = inputHandler.DoNothing;
+			inputHandler.inputUse = inputHandler.DoNothing;
 		}
 	}
 	public override void OnExitState () {

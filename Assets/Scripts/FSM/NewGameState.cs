@@ -25,7 +25,8 @@ public class NewGameState : State {
 		planetGenerator.Generate ();
 		player.EnterPlanet ();
 		rocket.SetVelocity (0);
-		float angle = Random.Range (0f, 2f * Mathf.PI);
+		float angle = Mathf.PI / 2f;
+		//float angle = Random.Range (0f, 2f * Mathf.PI);
 		player.SetAngle (angle);
 		rocket.SetAngle (angle);
 		int firstPlanetID = Random.Range (0, planetGenerator.GetPlanets ().Count - 1);

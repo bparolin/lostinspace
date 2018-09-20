@@ -25,7 +25,8 @@ public class Entity : MonoBehaviour {
 	private void FixedUpdate () {
 		if (planetOn != null) {
 			this.transform.position = new Vector3 (planetScale * Mathf.Cos (phi) + planetOn.transform.position.x, planetScale * Mathf.Sin(phi) + planetOn.transform.position.y, 0f);
-			this.transform.up = this.transform.position - planetOn.transform.position;
+			//this.transform.up = this.transform.position - planetOn.transform.position;
+			this.transform.rotation = Quaternion.Euler (0f, 0f, Mathf.Rad2Deg * phi - 90f);
 		}
 	}
 
@@ -58,12 +59,12 @@ public class Entity : MonoBehaviour {
 
 	public void MoveCW () {
 		spriteRenderer.flipX = true;
-		phi -= moveSpeed / planetScale * Time.deltaTime;
+		phi -= moveSpeed / planetScale * Time.fixedDeltaTime;
 	}
 
 	public void MoveCCW () {
 		spriteRenderer.flipX = false;
-		phi += moveSpeed / planetScale * Time.deltaTime;
+		phi += moveSpeed / planetScale * Time.fixedDeltaTime;
 	}
 
 	public void Move (float x, float y) {

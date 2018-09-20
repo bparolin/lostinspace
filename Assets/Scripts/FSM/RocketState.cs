@@ -26,9 +26,9 @@ public class RocketState : State {
 	public override void OnEnterState () {
 		cameraHandler.SetFollowedObject (rocket.gameObject, false);
 		inputHandler.ResetButtons ();
-		inputHandler.buttonZ = rocket.Accelerate;
-		inputHandler.buttonQ = rocket.TurnLeft;
-		inputHandler.buttonD = rocket.TurnRight;
+		inputHandler.inputUp = rocket.Accelerate;
+		inputHandler.inputLeft = rocket.TurnLeft;
+		inputHandler.inputRight = rocket.TurnRight;
 	}
 
 	public override void OnFixedUpdate () {
@@ -56,9 +56,9 @@ public class RocketState : State {
 		}
 
 		if (nearPlanet == true)
-			inputHandler.buttonF = EnterPlanet;
+			inputHandler.inputUse = EnterPlanet;
 		else {
-			inputHandler.buttonF = inputHandler.DoNothing;
+			inputHandler.inputUse = inputHandler.DoNothing;
 			landablePlanet = null;
 		}
 	}

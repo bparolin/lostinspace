@@ -6,36 +6,22 @@ using UnityEngine;
 
 public class InputHandler : MonoBehaviour {
 	[HideInInspector]
-	public Action buttonQ;
+	public Action inputUp;
 	[HideInInspector]
-	public Action buttonD;
+	public Action inputLeft;
 	[HideInInspector]
-	public Action buttonZ;
+	public Action inputRight;
 	[HideInInspector]
-	public Action buttonF;
+	public Action inputUse;
 	[HideInInspector]
-	public Action buttonSpace;
-
-	// Update is called once per frame
-	private void Update () {
-		if (Input.GetKey (KeyCode.Q) == true || Input.GetKey (KeyCode.LeftArrow) == true)
-			buttonQ ();
-		if (Input.GetKey (KeyCode.D) == true || Input.GetKey (KeyCode.RightArrow) == true)
-			buttonD ();
-		if (Input.GetKey (KeyCode.Z) == true || Input.GetKey (KeyCode.UpArrow) == true)
-			buttonZ ();
-		if (Input.GetKeyDown (KeyCode.F) == true)
-			buttonF ();
-		if (Input.GetKeyDown (KeyCode.Space) == true)
-			buttonSpace ();
-	}
+	public Action inputStart;
 
 	public void ResetButtons () {
-		buttonQ = DoNothing;
-		buttonD = DoNothing;
-		buttonZ = DoNothing;
-		buttonF = DoNothing;
-		buttonSpace = DoNothing;
+		inputLeft = DoNothing;
+		inputRight = DoNothing;
+		inputUp = DoNothing;
+		inputUse = DoNothing;
+		inputStart = DoNothing;
 	}
 
 	public void DoNothing () {

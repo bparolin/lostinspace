@@ -36,7 +36,7 @@ public class EndGameState : State {
 		}
 
 		panelManager.EnablePanel (endGamePanel);
-		inputHandler.buttonSpace = RestartGame;
+		inputHandler.inputStart = RestartGame;
 	}
 
 	public override void OnFixedUpdate () {
